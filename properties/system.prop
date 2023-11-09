@@ -1,0 +1,18 @@
+# Brand
+Build.BRAND=MTK
+
+# Additional System Properties
+ro.mediatek.platform=MT6785
+ro.hardware=mt6785
+ro.product.device=RMX2155L1
+ro.boot.dynamic_partitions=true
+ro.sf.lcd_density=405
+ro.sys.usb.mtp.whql.enable=0
+persist.sys.usb.config=adb
+ro.sys.usb.storage.type=mtp
+ro.secure=0
+ro.adb.secure=0
+ro.debuggable=1
+
+# Storage
+persist.sys.fuse.passthrough.enable=true
