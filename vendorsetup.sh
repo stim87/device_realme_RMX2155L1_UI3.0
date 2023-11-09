@@ -1,0 +1,98 @@
+FDEVICE="RMX2155"
+#set -o xtrace
+
+fox_get_target_device() {
+local chkdev=$(echo "$BASH_SOURCE" | grep -w $FDEVICE)
+   if [ -n "$chkdev" ]; then
+      FOX_BUILD_DEVICE="$FDEVICE"
+   else
+      chkdev=$(set | grep BASH_ARGV | grep -w $FDEVICE)
+      [ -n "$chkdev" ] && FOX_BUILD_DEVICE="$FDEVICE"
+   fi
+}
+
+if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
+   fox_get_target_device
+fi
+
+if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
+	# Initial Exports
+        #export USE_CCACHE=1
+        #export CCACHE_EXEC=/usr/bin/ccache
+        #ccache -M 50G
+	export ALLOW_MISSING_DEPENDENCIES=true
+        export LC_ALL="C"
+
+	# Maintaining Info
+	export OF_MAINTAINER=Stim_Luks
+        export FOX_VERSION=R11.1_3
+        export FOX_BUILD_TYPE="Stable"
+
+        # Custom pic for the maintainer's info in about section
+	#export OF_MAINTAINER_AVATAR=
+	
+	# Device Information
+	export FOX_ARCH=arm64
+	export FOX_VARIANT="Realme_7-UI_3.0"
+	export TARGET_DEVICE_ALT="RMX2151,RMX2151L1,RMX2155,RMX2155L1,RMX2001,RMX2001L1,OPPO6785,oppo6785,RM6785,rm6785,MT6785,mt6785,alps,ossi"
+
+	# Funtions
+	export FOX_REPLACE_TOOLBOX_GETPROP=1
+	export FOX_USE_TAR_BINARY=1
+	export FOX_USE_SED_BINARY=1
+	export FOX_USE_BASH_SHELL=1
+	export FOX_ASH_IS_BASH=1
+	export FOX_USE_GREP_BINARY=1
+	export FOX_USE_XZ_UTILS=1
+	export FOX_USE_NANO_EDITOR=1
+       export OF_CHECK_OVERWRITE_ATTEMPTS=1
+       export OF_USE_MAGISKBOOT=1
+       export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
+
+	# Display Settings
+	export OF_SCREEN_H=2400
+	export OF_STATUS_H=115
+	export OF_STATUS_INDENT_LEFT=155
+	export OF_STATUS_INDENT_RIGHT=48
+	export OF_HIDE_NOTCH=1
+	export OF_ALLOW_DISABLE_NAVBAR=0
+        export OF_FLASHLIGHT_ENABLE=0
+        export OF_FL_PATH1="/tmp/flashlight"
+        export OF_USE_GREEN_LED=0
+        export TW_DEFAULT_LANGUAGE="ru"
+        export OF_DEFAULT_TIMEZONE="SAUST-3;SAUDT"
+
+	# Other OrangeFox Vars
+        export OF_DEFAULT_KEYMASTER_VERSION=4.0
+        export FOX_USE_DATA_RECOVERY_FOR_SETTINGS=1
+        export OF_DISABLE_MIUI_SPECIFIC_FEATURES=1
+        export OF_TWRP_COMPATIBILITY_MODE=1
+        export OF_DISABLE_DM_VERITY_FORCED_ENCRYPTION=0
+        export OF_FORCE_DISABLE_DM_VERITY_FORCED_ENCRYPTION=0
+        export OF_SKIP_DECRYPTED_ADOPTED_STORAGE=1
+        export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
+	export OF_FIX_DECRYPTION_ON_DATA_MEDIA=1
+	export OF_PATCH_AVB20=1
+        export OF_SUPPORT_OZIP_DECRYPTION=1
+        export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
+        export FOX_BUGGED_AOSP_ARB_WORKAROUND="1420041600"
+        export FOX_ENABLE_APP_MANAGER=1
+        export FOX_USE_SPECIFIC_MAGISK_ZIP="/home/stim/fox_12.1/device/realme/RMX2155/Magisk/Magisk-v26.3.zip"
+        export OF_QUICK_BACKUP_LIST="/super;/recovery;/boot;/dtbo;/data;/nvram"
+
+        # OTA
+	#export OF_KEEP_DM_VERITY=1
+	#export OF_SUPPORT_ALL_BLOCK_OTA_UPDATES=1
+	#export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
+	#export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
+        #export OF_NO_MIUI_PATCH_WARNING=1
+
+	# let's see what are our build VARs
+	if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
+		export | grep "FOX" >> $FOX_BUILD_LOG_FILE
+		export | grep "OF_" >> $FOX_BUILD_LOG_FILE
+		export | grep "TARGET_" >> $FOX_BUILD_LOG_FILE
+		export | grep "TW_" >> $FOX_BUILD_LOG_FILE
+	fi
+fi
+#
