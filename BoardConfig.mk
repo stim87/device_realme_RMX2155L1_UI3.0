@@ -1,20 +1,23 @@
+#
 # Copyright (C) 2023 The Android Open Source Project
 # Copyright (C) 2023 SebaUbuntu's TWRP device tree generator
+#
 # SPDX-License-Identifier: Apache-2.0
+#
 
 #Device path name
-DEVICE_PATH := device/realme/RMX2155
+DEVICE_PATH := device/realme/ossi
 PREBUILT_PATH := $(DEVICE_PATH)/prebuilt
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
 # APEX
-OVERRIDE_TARGET_FLATTEN_APEX := true
+DEXPREOPT_GENERATE_APEX_IMAGE := true
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := RMX2151,RMX2151L1,RMX2155,RMX2155L1,RMX2156,RMX2156L1,RMX2001,RMX2001L1,OPPO6785,oppo6785,RM6785,rm6785,MT6785,mt6785,alps,ossi,oplus
-
+TARGET_OTA_ASSERT_DEVICE := RMX2151,RMX2151L1,RMX2153,RMX2153L1,RMX2155,RMX2155L1,RMX2156,RMX2156L1,RMX2161,RMX2161L1,RMX2163,RMX2163L1,salaa,alps,ossi
+                                
 # Build Rules
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_PREBUILT_ELF_FILES := true
@@ -40,6 +43,12 @@ TARGET_CPU_ABI_LIST_32_BIT := $(TARGET_2ND_CPU_ABI),$(TARGET_2ND_CPU_ABI2)
 TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_64_BIT),$(TARGET_CPU_ABI_LIST_32_BIT)
 TARGET_USES_64_BIT_BINDER := true
 
+# Platform
+TARGET_BOARD_PLATFORM := MT6785
+TARGET_BOARD_PLATFORM_GPU := mali-g76
+TARGET_BOOTLOADER_BOARD_NAME := RM6785
+TARGET_NO_BOOTLOADER := true
+
 # File systems
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33554432
@@ -58,17 +67,10 @@ TARGET_USES_MKE2FS := true
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
-BOARD_SUPER_PARTITION_SIZE := 6970933248
-BOARD_SUPER_PARTITION_GROUPS := main
-BOARD_MAIN_SIZE := 6975127552 # ( BOARD_SUPER_PARTITION_SIZE - 4MB )
-BOARD_MAIN_PARTITION_LIST := system vendor product
-
-# Platform
-TARGET_BOARD_PLATFORM := MT6785
-TARGET_BOARD_PLATFORM_GPU := mali-g76
-BOARD_VENDOR := realme
-TARGET_SOC := mt6785
-TARGET_NO_BOOTLOADER := true
+BOARD_SUPER_PARTITION_SIZE := 9126805504 # TODO: Fix hardcoded value
+BOARD_SUPER_PARTITION_GROUPS := oplus_dynamic_partitions
+BOARD_OPLUS_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product system_ext
+BOARD_OPLUS_DYNAMIC_PARTITIONS_SIZE := 9122611200 # TODO: Fix hardcoded value
 
 # Kernel - prebuilt
 TARGET_FORCE_PREBUILT_KERNEL := true
@@ -87,7 +89,8 @@ BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_BOOTIMG_HEADER_VERSION := 2
 BOARD_KERNEL_BASE := 0x40078000
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
-BOARD_KERNEL_CMDLINE += loop.max_part=7 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE += androidboot.usbconfigfs=true
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x07c08000
 BOARD_KERNEL_TAGS_OFFSET := 0x0bc08000
@@ -115,7 +118,7 @@ TARGET_VENDOR_PROP := $(DEVICE_PATH)/properties/vendor.prop
 TARGET_RECOVERY_DEVICE_DIRS += $(DEVICE_PATH)
 
 # Display
-TARGET_SCREEN_DENSITY := 405
+TARGET_SCREEN_DENSITY := 480
 
 # Versions and Security Patch
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -133,17 +136,33 @@ TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_PREPARE_DATA_MEDIA_EARLY := true
-#TW_USE_FSCRYPT_POLICY := 1
+TW_USE_FSCRYPT_POLICY := 1
 
 # AVB
 BOARD_AVB_ENABLE := true
 BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
-BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
-BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA2048
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
+
+BOARD_AVB_VBMETA_SYSTEM := system
+BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
+BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
+
+BOARD_AVB_VBMETA_VENDOR := vendor
+BOARD_AVB_VBMETA_VENDOR_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
+BOARD_AVB_VBMETA_VENDOR_ALGORITHM := SHA256_RSA2048
+BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX_LOCATION := 1
+
+# Metadata
+BOARD_USES_METADATA_PARTITION := true
+BOARD_ROOT_EXTRA_FOLDERS += metadata my_bigball my_carrier my_company my_engineering my_heytap my_manifest my_preload my_product my_region my_stock my_version 
 
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
@@ -165,13 +184,13 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
 
 # Version/Maintainer
-TW_DEVICE_VERSION := Realme_7-UI_3.0
+TW_DEVICE_VERSION := Realme_7_RMX2155-UI_V3.0
 
 # TWRP Configuration
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-TW_NEVER_UNMOUNT_SYSTEM := true 
 TW_INCLUDE_FB2PNG := true
-RECOVERY_SDCARD_ON_DATA := true 
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
+TW_NEVER_UNMOUNT_SYSTEM := true  
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
@@ -181,7 +200,6 @@ TW_USE_TOOLBOX := true
 TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INCLUDE_FASTBOOTD := true
 TW_SKIP_COMPATIBILITY_CHECK := true
 TW_FRAMERATE := 90
@@ -192,19 +210,24 @@ TW_FORCE_KEYMASTER_VER := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/power_supply/battery/temp
-TW_INCLUDE_LOGICAL := my_product my_engineering my_company my_carrier my_region my_heytap my_stock my_preload my_manifest
-BOARD_CHARGER_ENABLE_SUSPEND := true
+TW_INCLUDE_LOGICAL := my_product my_engineering my_company my_carrier my_region my_heytap my_stock my_preload my_bigball my_manifest
 TW_EXCLUDE_APEX := true
+TW_USE_NEW_MINADBD := true
+TW_NO_LEGACY_PROPS := true
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_CHARGER_ENABLE_SUSPEND := true
 #TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery/capacity
 #TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery/status
 
-# Configure Status bar icons for regular TWRP builds only
+# Screen resolution
 DEVICE_RESOLUTION := 1080x2400
-TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
-#TW_CUSTOM_CPU_POS := 155
+TARGET_SCREEN_HEIGHT := 2400
+
+# Configure Status bar icons "TWRP builds only"
 #TW_Y_OFFSET := 35
 #TW_H_OFFSET := -35
+#TW_CUSTOM_CPU_POS := 155
 #TW_CUSTOM_CLOCK_POS :=
 #TW_STATUS_ICONS_ALIGN := center
 
@@ -218,9 +241,9 @@ TW_INCLUDE_FUSE_EXFAT := true
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
 
+# Inherit the proprietary files
+include vendor/realme/ossi/BoardConfigVendor.mk
+
 #Properties Override
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental" 
-
-# Inherit from proprietary files
-#include vendor/realme/RM6785/BoardConfigVendor.mk
