@@ -45,9 +45,9 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_USE_GREP_BINARY=1
 	export FOX_USE_XZ_UTILS=1
 	export FOX_USE_NANO_EDITOR=1
-       export OF_CHECK_OVERWRITE_ATTEMPTS=1
-       export OF_USE_MAGISKBOOT=1
-       export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
+        export OF_CHECK_OVERWRITE_ATTEMPTS=1
+        export OF_USE_MAGISKBOOT=1
+        export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
 
 	# Display Settings
 	export OF_SCREEN_H=2400
