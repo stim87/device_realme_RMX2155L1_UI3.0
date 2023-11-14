@@ -241,9 +241,9 @@ TW_INCLUDE_FUSE_EXFAT := true
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
 
-# Inherit the proprietary files
-include vendor/realme/ossi/BoardConfigVendor.mk
-
 #Properties Override
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental" 
+
+# Inherit the proprietary files
+include vendor/realme/ossi/BoardConfigVendor.mk
