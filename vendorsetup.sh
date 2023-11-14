@@ -1,4 +1,4 @@
-FDEVICE="RMX2155"
+FDEVICE="ossi"
 #set -o xtrace
 
 fox_get_target_device() {
@@ -25,7 +25,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
 	# Maintaining Info
 	export OF_MAINTAINER=Stim_Luks
-        export FOX_VERSION=R11.1_3
+        export FOX_VERSION=R11.1_4
         export FOX_BUILD_TYPE="Stable"
 
         # Custom pic for the maintainer's info in about section
@@ -33,8 +33,8 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	
 	# Device Information
 	export FOX_ARCH=arm64
-	export FOX_VARIANT="Realme_7-UI_3.0"
-	export TARGET_DEVICE_ALT="RMX2151,RMX2151L1,RMX2155,RMX2155L1,RMX2001,RMX2001L1,OPPO6785,oppo6785,RM6785,rm6785,MT6785,mt6785,alps,ossi"
+	export FOX_VARIANT="Realme_7_RMX2155-UI_V3.0"
+	export TARGET_DEVICE_ALT="RMX2151,RMX2151L1,RMX2153,RMX2153L1,RMX2155,RMX2155L1,RMX2156,RMX2156L1,RMX2161,RMX2161L1,RMX2163,RMX2163L1,salaa,alps,ossi"
 
 	# Funtions
 	export FOX_REPLACE_TOOLBOX_GETPROP=1
@@ -77,7 +77,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
         export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
         export FOX_BUGGED_AOSP_ARB_WORKAROUND="1420041600"
         export FOX_ENABLE_APP_MANAGER=1
-        export FOX_USE_SPECIFIC_MAGISK_ZIP="/home/stim/fox_12.1/device/realme/RMX2155/Magisk/Magisk-v26.3.zip"
+        export FOX_USE_SPECIFIC_MAGISK_ZIP="/root/fox_12.1/device/realme/ossi/Magisk/Magisk-v26.3.zip"
         export OF_QUICK_BACKUP_LIST="/super;/recovery;/boot;/dtbo;/data;/nvram"
 
         # OTA
