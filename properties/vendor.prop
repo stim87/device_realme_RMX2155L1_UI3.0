@@ -14,4 +14,6 @@ ro.crypto.volume.metadata.method=dm-default-key
 ro.crypto.volume.options=::v1
 ro.vendor.mtk_f2fs_enable=1
 
-
+############################## Add OPPO Info Common End ##############################
+ro.vendor.mediatek.platform=MT6785
+ro.vendor.oplus.market.name=realme 7
