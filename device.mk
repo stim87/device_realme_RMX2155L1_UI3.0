@@ -11,6 +11,14 @@ LOCAL_PATH := device/realme/ossi
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
+# Partitions && Property
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
+
+# Shipping API level
+PRODUCT_SHIPPING_API_LEVEL := 29
+BOARD_SHIPPING_API_LEVEL := 30
+
 # fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.1-impl-mock \
@@ -21,11 +29,6 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl \
     android.hardware.health@2.1-impl.recovery \
     android.hardware.health@2.1-service
-
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.health@2.1-impl.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.health@2.1-impl.recovery.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.health@2.1-service.so
 
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
@@ -45,13 +48,6 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.gatekeeper@1.0-service.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.gatekeeper@1.0-impl.so
 
-# Partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 29
-BOARD_SHIPPING_API_LEVEL := 30
-
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.2-service-mediatekv2
@@ -61,5 +57,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2099-12-31 \
     ro.bootimage.build.date.utc=0 \
     ro.build.date.utc=0
-
-PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
