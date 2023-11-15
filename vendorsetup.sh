@@ -51,9 +51,9 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
 	# Display Settings
 	export OF_SCREEN_H=2400
-	export OF_STATUS_H=115
+	export OF_STATUS_H=120
 	export OF_STATUS_INDENT_LEFT=155
-	export OF_STATUS_INDENT_RIGHT=48
+	export OF_STATUS_INDENT_RIGHT=50
 	export OF_HIDE_NOTCH=1
 	export OF_ALLOW_DISABLE_NAVBAR=0
         export OF_FLASHLIGHT_ENABLE=0
@@ -77,8 +77,8 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
         export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
         export FOX_BUGGED_AOSP_ARB_WORKAROUND="1420041600"
         export FOX_ENABLE_APP_MANAGER=1
-        export FOX_USE_SPECIFIC_MAGISK_ZIP="/root/fox_12.1/device/realme/ossi/Magisk/Magisk-v26.3.zip"
-        export OF_QUICK_BACKUP_LIST="/super;/recovery;/boot;/dtbo;/data;/nvram"
+        export FOX_USE_SPECIFIC_MAGISK_ZIP="/root/OrangeFox/fox_12.1/device/realme/ossi/Magisk/Magisk-v26.3.zip"
+        export OF_QUICK_BACKUP_LIST="/boot;/dtbo;/recovery;/nvram;/data;/super;/"
 
         # OTA
 	#export OF_KEEP_DM_VERITY=1
