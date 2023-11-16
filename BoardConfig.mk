@@ -24,8 +24,6 @@ BUILD_BROKEN_PREBUILT_ELF_FILES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Architecture
-BOARD_HAS_MTK_HARDWARE := true
-MTK_HARDWARE := true
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a-dotprod
 TARGET_CPU_ABI := arm64-v8a
@@ -44,6 +42,8 @@ TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_64_BIT),$(TARGET_CPU_ABI_LIST_32_BI
 TARGET_USES_64_BIT_BINDER := true
 
 # Platform
+MTK_HARDWARE := true
+BOARD_HAS_MTK_HARDWARE := true
 TARGET_BOARD_PLATFORM := MT6785
 TARGET_BOARD_PLATFORM_GPU := mali-g76
 TARGET_BOOTLOADER_BOARD_NAME := RM6785
@@ -108,7 +108,8 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 #TARGET_KERNEL_CONFIG := RM6785_defconfig
 #TARGET_KERNEL_SOURCE := kernel/realme/mt6785   
 
-# Recovery                 
+# Recovery
+RECOVERY_SDCARD_ON_DATA := true                 
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := "roboto_15x24.h"
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
@@ -187,10 +188,11 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
 TW_DEVICE_VERSION := Realme_7_RMX2155-UI_V3.0
 
 # TWRP Configuration
+TW_EXCLUDE_APEX := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_INCLUDE_FB2PNG := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-TW_NEVER_UNMOUNT_SYSTEM := true  
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true  
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
@@ -202,34 +204,20 @@ TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_FASTBOOTD := true
 TW_SKIP_COMPATIBILITY_CHECK := true
-TW_FRAMERATE := 90
+TW_FRAMERATE := 60
 TW_DEFAULT_LANGUAGE := ru
 TW_OZIP_DECRYPT_KEY := 0000
-TW_FORCE_KEYMASTER_VER := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/power_supply/battery/temp
 TW_INCLUDE_LOGICAL := my_product my_engineering my_company my_carrier my_region my_heytap my_stock my_preload my_bigball my_manifest
-TW_EXCLUDE_APEX := true
-TW_USE_NEW_MINADBD := true
-TW_NO_LEGACY_PROPS := true
-RECOVERY_SDCARD_ON_DATA := true
-BOARD_CHARGER_ENABLE_SUSPEND := true
-#TW_INPUT_BLACKLIST := "hbtp_vm"
+#TW_EXCLUDE_SUPERSU := true
+#TW_NEVER_UNMOUNT_SYSTEM := true
+#TW_USE_NEW_MINADBD := true
+#TW_NO_LEGACY_PROPS := true
+#TW_FORCE_KEYMASTER_VER := true
 #TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery/capacity
 #TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery/status
-
-# Screen resolution
-#DEVICE_RESOLUTION := 1080x2400
-#TARGET_SCREEN_WIDTH := 1080
-#TARGET_SCREEN_HEIGHT := 2400
-
-# Configure Status bar icons "TWRP builds only"
-#TW_Y_OFFSET := 36
-#TW_H_OFFSET := -36
-#TW_CUSTOM_CPU_POS := 155
-#TW_CUSTOM_CLOCK_POS := 155
-#TW_STATUS_ICONS_ALIGN := center
 
 # Debug flags
 TWRP_INCLUDE_LOGCAT := true
@@ -241,9 +229,21 @@ TW_INCLUDE_FUSE_EXFAT := true
 # NTFS Support
 TW_INCLUDE_FUSE_NTFS := true
 
+# Screen resolution
+DEVICE_RESOLUTION := 1080x2400
+TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 2400
+
+# Configure Status bar icons "TWRP builds only"
+#TW_Y_OFFSET := 40
+#TW_H_OFFSET := -40
+#TW_CUSTOM_CPU_POS := 155
+#TW_CUSTOM_CLOCK_POS := 155
+#TW_STATUS_ICONS_ALIGN := center
+
+# Inherit the proprietary files
+#include vendor/realme/ossi/BoardConfigVendor.mk
+
 #Properties Override
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental" 
-
-# Inherit the proprietary files
-include vendor/realme/ossi/BoardConfigVendor.mk
