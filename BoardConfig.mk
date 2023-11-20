@@ -190,7 +190,6 @@ TW_DEVICE_VERSION := Realme_7_RMX2155-UI_V3.0
 # TWRP Configuration
 TW_EXCLUDE_APEX := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_INCLUDE_FB2PNG := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true  
 TW_THEME := portrait_hdpi
@@ -211,11 +210,12 @@ TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/power_supply/battery/temp
 TW_INCLUDE_LOGICAL := my_product my_engineering my_company my_carrier my_region my_heytap my_stock my_preload my_bigball my_manifest
+TW_INCLUDE_FB2PNG := true
 #TW_EXCLUDE_SUPERSU := true
 #TW_NEVER_UNMOUNT_SYSTEM := true
 #TW_USE_NEW_MINADBD := true
 #TW_NO_LEGACY_PROPS := true
-#TW_FORCE_KEYMASTER_VER := true
+TW_FORCE_KEYMASTER_VER := true
 #TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery/capacity
 #TW_CUSTOM_BATTERY_PATH := /sys/class/power_supply/battery/status
 
@@ -230,14 +230,14 @@ TW_INCLUDE_FUSE_EXFAT := true
 TW_INCLUDE_FUSE_NTFS := true
 
 # Screen resolution
-DEVICE_RESOLUTION := 1080x2400
-TARGET_SCREEN_WIDTH := 1080
-TARGET_SCREEN_HEIGHT := 2400
+#DEVICE_RESOLUTION := 1080x2400
+#TARGET_SCREEN_WIDTH := 1080
+#TARGET_SCREEN_HEIGHT := 2400
 
 # Configure Status bar icons "TWRP builds only"
-#TW_Y_OFFSET := 40
-#TW_H_OFFSET := -40
-#TW_CUSTOM_CPU_POS := 155
+TW_Y_OFFSET := 32
+TW_H_OFFSET := -32
+TW_CUSTOM_CPU_POS := 155
 #TW_CUSTOM_CLOCK_POS := 155
 #TW_STATUS_ICONS_ALIGN := center
 
