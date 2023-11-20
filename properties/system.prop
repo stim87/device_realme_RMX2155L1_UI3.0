@@ -8,9 +8,8 @@ ro.sf.lcd_density=480
 ro.sys.usb.mtp.whql.enable=0
 persist.sys.usb.config=adb
 ro.sys.usb.storage.type=mtp
+ro.boot.avb_version=2.0
+ro.boot.vbmeta.avb_version=1.2
 ro.secure=0
 ro.adb.secure=0
 ro.debuggable=1
-
-# Storage
-persist.sys.fuse.passthrough.enable=true
