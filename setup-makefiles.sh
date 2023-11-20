@@ -8,7 +8,7 @@
 
 set -e
 
-DEVICE=ossi
+DEVICE=RMX2155L1
 VENDOR=realme
 
 # Load extract_utils and do some sanity checks
