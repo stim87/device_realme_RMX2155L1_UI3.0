@@ -3,15 +3,11 @@ Build.BRAND=MTK
 
 # Additional System Properties
 ro.mediatek.platform=MT6785
-ro.product.board=RM6785
 ro.product.device=RMX2155L1
 ro.sf.lcd_density=480
 ro.sys.usb.mtp.whql.enable=0
 persist.sys.usb.config=adb
 ro.sys.usb.storage.type=mtp
-ro.product.vendor.brand=realme
-ro.product.first_api_level=29
-ro.board.first_api_level=30
 ro.secure=0
 ro.adb.secure=0
 ro.debuggable=1
