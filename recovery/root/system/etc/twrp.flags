@@ -11,8 +11,8 @@
 /cache                       ext4      /dev/block/platform/bootdevice/by-name/cache                 flags=display="Cache";wipeduringfactoryreset;wipeingui;backup=1
 /metadata                    ext4      /dev/block/platform/bootdevice/by-name/metadata              flags=display="Metadata";wipeduringfactoryreset;wipeingui
 /storage                     auto      /data/media/0                                                flags=display="Internal Storage";usermrf;backup=1;fsflags="bind";removable;                                                                                                                                                
-/sdcard1                     auto      /dev/block/mmcblk0p1         /dev/block/mmcblk0              flags=fsflags=utf8;display="SDcard1";storage;wipeingui;removable;
-/usb_otg                     auto      /dev/block/sdd1                  /dev/block/sdd              flags=fsflags=utf8;display="USB-OTG";storage;wipeingui;removable;
+/sdcard1                     auto      /dev/block/mmcblk0p1         /dev/block/mmcblk0              flags=fsflags=utf8;display="Micro SD Card";storage;wipeingui;removable;
+/usb_otg                     auto      /dev/block/sdd1                  /dev/block/sdd              flags=fsflags=utf8;display="USB OTG";storage;wipeingui;removable;
 
 # Imei Backup and Driver
 /nvram                       emmc      /dev/block/platform/bootdevice/by-name/nvram                 flags=display="NvRam";flashimg=1;backup=1
