@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_ossi.mk
+    $(LOCAL_DIR)/twrp_RMX2155L1.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_ossi-user \
-    twrp_ossi-userdebug \
-    twrp_ossi-eng
+    twrp_RMX2155L1-user \
+    twrp_RMX2155L1-userdebug \
+    twrp_RMX2155L1-eng
