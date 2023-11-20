@@ -6,7 +6,7 @@
 #
 
 #Device path name
-DEVICE_PATH := device/realme/ossi
+DEVICE_PATH := device/realme/RMX2155L1
 PREBUILT_PATH := $(DEVICE_PATH)/prebuilt
 
 # For building with minimal manifest
@@ -242,7 +242,7 @@ TW_CUSTOM_CPU_POS := 155
 #TW_STATUS_ICONS_ALIGN := center
 
 # Inherit the proprietary files
-#include vendor/realme/ossi/BoardConfigVendor.mk
+#include vendor/realme/RMX2155L1/BoardConfigVendor.mk
 
 #Properties Override
 TW_OVERRIDE_SYSTEM_PROPS := \
