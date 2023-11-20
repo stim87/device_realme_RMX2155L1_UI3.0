@@ -7,8 +7,8 @@ echo $prjName
 
 case $prjName in
     "20682")
-        resetprop "ro.product.model" "RMX2155"
-        resetprop "ro.product.name" "RMX2155EEA"
+        resetprop "ro.product.model" "realme 7"
+        resetprop "ro.product.name" "RMX2155"
         resetprop "ro.build.product" "RMX2155L1"
         resetprop "ro.product.device" "RMX2155L1"
         ;;
