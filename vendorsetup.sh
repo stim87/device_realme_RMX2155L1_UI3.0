@@ -85,7 +85,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
         export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
         export FOX_BUGGED_AOSP_ARB_WORKAROUND="1420041600"
         export FOX_ENABLE_APP_MANAGER=1
-        export FOX_USE_SPECIFIC_MAGISK_ZIP="/home/stim/OrangeFox/fox_12.1/device/realme/RMX2155L1/Magisk/Magisk-v26.3.zip"
+        export FOX_USE_SPECIFIC_MAGISK_ZIP="/home/stim/OrangeFox/fox_12.1/device/realme/RMX2155/Magisk/Magisk-v26.3.zip"
         export OF_QUICK_BACKUP_LIST="/boot;/dtbo;/recovery;/nvram;/data;/super;/"
 
         # OTA
