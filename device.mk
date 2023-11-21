@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-LOCAL_PATH := device/realme/RMX2155L1
+LOCAL_PATH := device/realme/RMX2155
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
