@@ -1,4 +1,4 @@
-FDEVICE="RMX2155L1"
+FDEVICE="RMX2155"
 #set -o xtrace
 
 fox_get_target_device() {
