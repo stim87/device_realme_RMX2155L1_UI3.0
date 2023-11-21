@@ -6,7 +6,7 @@
 #
 
 #Device path name
-DEVICE_PATH := device/realme/RMX2155L1
+DEVICE_PATH := device/realme/RMX2155
 PREBUILT_PATH := $(DEVICE_PATH)/prebuilt
 
 # For building with minimal manifest
