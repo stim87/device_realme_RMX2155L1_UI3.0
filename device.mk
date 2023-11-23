@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-LOCAL_PATH := device/realme/RMX2155
+LOCAL_PATH := device/realme/RMX2155L1
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -15,6 +15,12 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_BUILD_SUPER_PARTITION := false
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
+
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-impl.recovery \
+    android.hardware.health@2.1-service
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 29
