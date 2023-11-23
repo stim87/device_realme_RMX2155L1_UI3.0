@@ -12,7 +12,7 @@ ALLOW_MISSING_DEPENDENCIES := true
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := RMX2151,RMX2151L1,RMX2153,RMX2153L1,RMX2155,RMX2155L1,RMX2156,RMX2156L1,RMX2161,RMX2161L1,RMX2163,RMX2163L1,salaa,alps,ossi
-                                
+
 # Build Rules
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_PREBUILT_ELF_FILES := true
@@ -182,6 +182,8 @@ TW_INCLUDE_LOGICAL := my_product my_engineering my_company my_carrier my_region 
 TW_INCLUDE_FB2PNG := true
 TW_FORCE_KEYMASTER_VER := true
 TW_INCLUDE_LIBRESETPROP := true
+TW_INCLUDE_FUSE_EXFAT := true
+TW_INCLUDE_FUSE_NTFS := true
 #TW_EXCLUDE_SUPERSU := true
 #TW_NEVER_UNMOUNT_SYSTEM := true
 #TW_USE_NEW_MINADBD := true
@@ -193,13 +195,6 @@ TW_INCLUDE_LIBRESETPROP := true
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 
-# exFAT FS Support
-TW_INCLUDE_FUSE_EXFAT := true
-
-# NTFS Support
-TW_INCLUDE_FUSE_NTFS := true
-
-
 # Configure Status bar icons "TWRP builds only"
 TW_Y_OFFSET := 32
 TW_H_OFFSET := -32
@@ -207,9 +202,9 @@ TW_CUSTOM_CPU_POS := 155
 #TW_CUSTOM_CLOCK_POS := 155
 #TW_STATUS_ICONS_ALIGN := center
 
-# Inherit the proprietary files
-#include vendor/realme/RMX2155L1/BoardConfigVendor.mk
-
 #Properties Override
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental" 
+
+# Inherit the proprietary files
+#include vendor/realme/RMX2155L1/BoardConfigVendor.mk
