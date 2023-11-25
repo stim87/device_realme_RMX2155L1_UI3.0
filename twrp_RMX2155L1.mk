@@ -16,6 +16,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Include GSI keys
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
+# Inherit from PBRP-common stuff, if building PBRP.
+$(call inherit-product-if-exists, vendor/pb/config/common.mk)
+
 # Inherit from TWRP-common stuff, if building TWRP.
 $(call inherit-product-if-exists, vendor/twrp/config/common.mk)
 
