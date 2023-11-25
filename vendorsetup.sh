@@ -26,7 +26,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
 	# Maintaining Info
 	export OF_MAINTAINER=Stim_Luks
-        export FOX_VERSION=R11.1_4
+        export FOX_VERSION=R11.1
         export FOX_BUILD_TYPE="Stable"
 
         # Custom pic for the maintainer's info in about section
